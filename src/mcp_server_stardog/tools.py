@@ -23,6 +23,7 @@ class ToolHandler:
             "get_database_configuration_documentation": self.handle_get_database_configuration_documentation,
             "get_database_size": self.handle_get_database_size,
             "get_roles_assigned_to_user": self.handle_get_roles_assigned_to_user,
+            "get_server_metrics": self.handle_get_server_metrics,
             "get_users_with_role": self.handle_get_users_with_role,
             "get_whoami": self.handle_get_whoami,
             "kill_process": self.handle_kill_process,
@@ -64,6 +65,7 @@ class ToolHandler:
             "get_database_configuration_documentation": "Get documentation for Stardog database configuration options.",
             "get_database_size": "Get the estimated size of a Stardog database in triples.",
             "get_roles_assigned_to_user": "Get the names of roles assigned to a specific user.",
+            "get_server_metrics": "Get the server metrics from Stardog.",
             "get_users_with_role": "Get all the usernames of users assigned to a specific role.",
             "get_whoami": "Return the authenticated user's username.",
             "kill_process": "Kill a specific process on the Stardog server.",
@@ -221,6 +223,9 @@ class ToolHandler:
                     },
                 },
                 "required": ["username"],
+            },
+            "get_server_metrics": {
+                "type": "object",
             },
             "get_users_with_role": {
                 "type": "object",
@@ -571,6 +576,10 @@ class ToolHandler:
         return [
             TextContent(type="text", text=f"Process with ID '{process_id}' killed.")
         ]
+
+    async def handle_get_server_metrics(self, arguments: dict) -> list[TextContent]:
+        metrics = await self.sd_client.monitoring.get_server_metrics()
+        return [TextContent(type="text", text=str(metrics))]
 
     async def handle_list_stored_queries(self, arguments: dict) -> list[TextContent]:
         tool_response = await self.sd_client.query.list_stored()

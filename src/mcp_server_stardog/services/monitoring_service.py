@@ -32,3 +32,11 @@ class MonitoringService:
         url = f"{self.client.endpoint}/admin/processes/{id}"
         await self.client._delete(url, None)
         return None
+
+    async def get_server_metrics(self) -> dict:
+        """
+        Get server metrics from Stardog.
+        """
+        url = f"{self.client.endpoint}/admin/status"
+        response = await self.client._get(url, None)
+        return response.json()

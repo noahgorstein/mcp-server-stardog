@@ -202,6 +202,8 @@ On Claude Desktop, you can provide an `env` object in the configuration to set t
   - No parameters required.
 - **kill_process** - Kill a specific process running on the Stardog server.
   - `id` (string, required): ID of the process to kill.
+- **get_server_metrics** - Get server metrics for the Stardog server.
+  - No parameters required.
 
 ### Roles
 - **list_roles** - List all roles in the Stardog server. Optionally include permissions. Optionally filter results to only include a subset of roles.
