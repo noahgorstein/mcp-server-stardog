@@ -3,6 +3,8 @@
 An [MCP server](https://modelcontextprotocol.io/introduction) implementation that interacts with a Stardog server's APIs, enabling automation
 and interaction capabilities for developers and tools.
 
+https://github.com/user-attachments/assets/4a41d6fb-8b20-4994-b973-81ce1c10c04a
+
 > [!WARNING]
 > This is a work in progress and is subject to change quite drastically.
 
